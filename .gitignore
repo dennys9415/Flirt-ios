@@ -1,0 +1,15 @@
+# Xcode
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+DerivedData/
+build/
+
+# XcodeGen output is regenerable — but we commit the project for Xcode users
+# (uncomment to ignore instead)
+# Flirt.xcodeproj/
+
+# macOS
+.DS_Store
+
+# Swift Package Manager
+.build/
