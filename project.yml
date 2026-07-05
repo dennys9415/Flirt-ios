@@ -7,7 +7,15 @@ targets:
   Flirt:
     type: application
     platform: iOS
-    sources: [Flirt]
+    sources: [Flirt, Shared]
+    dependencies:
+      - target: FlirtKeyboard
+        embed: true
+    entitlements:
+      path: Flirt/Flirt.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.singularitybox.flirt
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.singularitybox.flirt
@@ -17,7 +25,7 @@ targets:
         SWIFT_VERSION: "5.9"
         TARGETED_DEVICE_FAMILY: "1"
         CURRENT_PROJECT_VERSION: 1
-        MARKETING_VERSION: 0.1.0
+        MARKETING_VERSION: 0.2.0
     info:
       path: Flirt/Info.plist
       properties:
@@ -25,3 +33,38 @@ targets:
         NSAppTransportSecurity:
           # Local dev only — the API runs on http://localhost:3000
           NSAllowsLocalNetworking: true
+
+  FlirtKeyboard:
+    type: app-extension
+    platform: iOS
+    sources: [FlirtKeyboard, Shared]
+    entitlements:
+      path: FlirtKeyboard/FlirtKeyboard.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.singularitybox.flirt
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.singularitybox.flirt.keyboard
+        GENERATE_INFOPLIST_FILE: NO
+        SWIFT_VERSION: "5.9"
+        TARGETED_DEVICE_FAMILY: "1"
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 0.2.0
+        # Keyboard extensions run under a strict memory budget — keep it lean
+        SKIP_INSTALL: YES
+    info:
+      path: FlirtKeyboard/Info.plist
+      properties:
+        CFBundleDisplayName: Flirt
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.keyboard-service
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).KeyboardViewController
+          NSExtensionAttributes:
+            IsASCIICapable: false
+            PrefersRightToLeft: false
+            PrimaryLanguage: en-US
+            # Network access (our API) requires the user to grant Full Access
+            RequestsOpenAccess: true

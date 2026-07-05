@@ -5,6 +5,7 @@ enum APIError: LocalizedError {
     case http(Int, String)
     case decoding
     case network(Error)
+    case notAuthenticated
 
     var errorDescription: String? {
         switch self {
@@ -14,19 +15,36 @@ enum APIError: LocalizedError {
             return "Unexpected server response"
         case .network:
             return "Can't reach the server — is it running?"
+        case .notAuthenticated:
+            return "Open the Flirt app once to set up"
         }
     }
 }
 
-/// Thin client for flirt-api. Handles device auth transparently:
-/// authenticates on first use, refreshes on 401, retries once.
+/// Thin client for flirt-api, shared by the app and the keyboard extension.
+/// Tokens persist in the App Group so both targets share one device identity.
 actor APIClient {
     static let shared = APIClient()
 
+    /// The keyboard extension must not create a device identity — the app owns
+    /// onboarding. Set `false` there so an un-set-up keyboard fails with
+    /// `.notAuthenticated` instead of registering a parallel device.
+    var allowsDeviceRegistration = true
+
+    func configureForExtension() {
+        allowsDeviceRegistration = false
+    }
+
     private let baseURL = AppConfig.apiBaseURL
-    private var accessToken: String? = KeychainHelper.get("accessToken")
+    private var accessToken: String? = AppGroupStore.accessToken
 
     // MARK: - Public API
+
+    /// Called by the app at launch so the keyboard extension finds a ready
+    /// token in the App Group without the user generating anything first.
+    func warmUp() async {
+        _ = try? await ensureToken()
+    }
 
     func generateReplies(message: String, tone: Tone) async throws -> GenerateRepliesResponse {
         try await authorizedPost(
@@ -46,10 +64,17 @@ actor APIClient {
 
     private func ensureToken() async throws -> String {
         if let token = accessToken { return token }
+        if let stored = AppGroupStore.accessToken {
+            accessToken = stored
+            return stored
+        }
         return try await authenticateDevice()
     }
 
     private func authenticateDevice() async throws -> String {
+        guard allowsDeviceRegistration || AppGroupStore.deviceIdentifier != nil else {
+            throw APIError.notAuthenticated
+        }
         let identifier = await deviceIdentifier()
         let response: TokenPairResponse = try await post(
             path: "/auth/device",
@@ -57,16 +82,16 @@ actor APIClient {
             token: nil
         )
         accessToken = response.accessToken
-        KeychainHelper.set(response.accessToken, for: "accessToken")
-        KeychainHelper.set(response.refreshToken, for: "refreshToken")
+        AppGroupStore.accessToken = response.accessToken
+        AppGroupStore.refreshToken = response.refreshToken
         return response.accessToken
     }
 
     @MainActor
     private func deviceIdentifier() -> String {
-        if let existing = KeychainHelper.get("deviceIdentifier") { return existing }
+        if let existing = AppGroupStore.deviceIdentifier { return existing }
         let fresh = UIDevice.current.identifierForVendor?.uuidString ?? UUID().uuidString
-        KeychainHelper.set(fresh, for: "deviceIdentifier")
+        AppGroupStore.deviceIdentifier = fresh
         return fresh
     }
 
@@ -79,6 +104,7 @@ actor APIClient {
         } catch APIError.http(401, _) {
             // Expired token — re-authenticate once and retry
             accessToken = nil
+            AppGroupStore.accessToken = nil
             let fresh = try await authenticateDevice()
             return try await post(path: path, body: body, token: fresh)
         }

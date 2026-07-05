@@ -8,22 +8,59 @@
 
 /* Begin PBXBuildFile section */
 		059CE12970AFB61F0DCA9C3F /* ReplyGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BDEB12B357DA719F3D9CED /* ReplyGeneratorViewModel.swift */; };
-		1E94DA7204CE7A9EC4F4D48A /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E641B840AF46871ECA21E8B /* KeychainHelper.swift */; };
 		1FB152AAD6E9FF5B77CBF1F5 /* FlirtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67B61BEB7564DEA0E02F022 /* FlirtApp.swift */; };
-		64BD5D7209053B25189AF4B9 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C376545AB6A097AACEF1F6 /* APIClient.swift */; };
+		43D9E303AA8A023834A6216E /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA7DFC18D08BA20D6A6746 /* AppConfig.swift */; };
+		5728CB6479118CE817AAACA4 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F30D71AEF1B20CB4B9096 /* KeyboardView.swift */; };
+		5CFA6A2EEA84D87575050AAF /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F34D2EEC1BC22533D52F91 /* APIClient.swift */; };
+		7A81FF0FE5B91E01CA48D38B /* AppGroupStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D010312DD5BAD7796712713 /* AppGroupStore.swift */; };
 		7C83A43C3D1180D340A5BEAB /* SuggestionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC6AC88AAF11AFABD387759 /* SuggestionCard.swift */; };
-		7EB7D61E2DA71EE92895F2E4 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E73225C0CC3E542188AE44 /* AppConfig.swift */; };
-		8BCD4735D18104FAC9C16E91 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4671EDDFF64D60E855596E96 /* Models.swift */; };
+		7DB7AF505B9F036EDED3CCA1 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A442E7B3E1379A6B37D20A77 /* Models.swift */; };
+		9656BEABC1C3E3C4C754D70A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A442E7B3E1379A6B37D20A77 /* Models.swift */; };
+		96959994707FE929AF2F7C54 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7EA49525116E605A5F5792 /* KeyboardViewController.swift */; };
+		A7E2E4949578DF872591B075 /* AppGroupStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D010312DD5BAD7796712713 /* AppGroupStore.swift */; };
 		B9904DB3D9516CB3D2789D19 /* ReplyGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63B3A5C4B398BD44B5B7A90 /* ReplyGeneratorView.swift */; };
+		C1DA8741850896282F12B37F /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA7DFC18D08BA20D6A6746 /* AppConfig.swift */; };
+		D23956EAD03DE574CB9029FB /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F34D2EEC1BC22533D52F91 /* APIClient.swift */; };
+		F86B51FD22F5AA42E34697D5 /* FlirtKeyboard.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0999E7046551DAF6D5443767 /* FlirtKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7B63094B2D05BCE697180E33 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6C1A4DCD0268456FD8E110D8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C8719B3ADBFB29A615E6A4B;
+			remoteInfo = FlirtKeyboard;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		82D8C68BB394FB720CFC6AD1 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F86B51FD22F5AA42E34697D5 /* FlirtKeyboard.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		18C376545AB6A097AACEF1F6 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		45E73225C0CC3E542188AE44 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
-		4671EDDFF64D60E855596E96 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		7E641B840AF46871ECA21E8B /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		0999E7046551DAF6D5443767 /* FlirtKeyboard.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = FlirtKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D010312DD5BAD7796712713 /* AppGroupStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroupStore.swift; sourceTree = "<group>"; };
+		22DA7DFC18D08BA20D6A6746 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		3429C47712C5D6850B252CFC /* FlirtKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlirtKeyboard.entitlements; sourceTree = "<group>"; };
+		4A7F30D71AEF1B20CB4B9096 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		74F34D2EEC1BC22533D52F91 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		8E7EA49525116E605A5F5792 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		8F7E51847295EF5E3DA75AD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A442E7B3E1379A6B37D20A77 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		B67B61BEB7564DEA0E02F022 /* FlirtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlirtApp.swift; sourceTree = "<group>"; };
+		BBC3C2049A024FA32A27E5B6 /* Flirt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Flirt.entitlements; sourceTree = "<group>"; };
+		BFB2D54A9C7084085C7F884A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C63B3A5C4B398BD44B5B7A90 /* ReplyGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyGeneratorView.swift; sourceTree = "<group>"; };
 		D0F24A347794CA8B8DEF55B0 /* Flirt.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Flirt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3BDEB12B357DA719F3D9CED /* ReplyGeneratorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyGeneratorViewModel.swift; sourceTree = "<group>"; };
@@ -39,37 +76,35 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		299471EDCE5EE3CEDE82C586 /* Config */ = {
+		30D17E2E952D4430AA3C8462 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				45E73225C0CC3E542188AE44 /* AppConfig.swift */,
+				74F34D2EEC1BC22533D52F91 /* APIClient.swift */,
+				22DA7DFC18D08BA20D6A6746 /* AppConfig.swift */,
+				1D010312DD5BAD7796712713 /* AppGroupStore.swift */,
+				A442E7B3E1379A6B37D20A77 /* Models.swift */,
 			);
-			path = Config;
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		67A66029371F0EEE2278C5CC /* FlirtKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				3429C47712C5D6850B252CFC /* FlirtKeyboard.entitlements */,
+				BFB2D54A9C7084085C7F884A /* Info.plist */,
+				4A7F30D71AEF1B20CB4B9096 /* KeyboardView.swift */,
+				8E7EA49525116E605A5F5792 /* KeyboardViewController.swift */,
+			);
+			path = FlirtKeyboard;
 			sourceTree = "<group>";
 		};
 		9A973839EFABA46DA6E27A4C /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				D0F24A347794CA8B8DEF55B0 /* Flirt.app */,
+				0999E7046551DAF6D5443767 /* FlirtKeyboard.appex */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		B2DD60D1E0E960836325B1C6 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				18C376545AB6A097AACEF1F6 /* APIClient.swift */,
-				7E641B840AF46871ECA21E8B /* KeychainHelper.swift */,
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
-		B49BE617EE7E7D12AAD98578 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				4671EDDFF64D60E855596E96 /* Models.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		BAED61A4C62D7A411794EFCC /* Views */ = {
@@ -85,6 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				F41254CBFE006CB58D755BB1 /* Flirt */,
+				67A66029371F0EEE2278C5CC /* FlirtKeyboard */,
+				30D17E2E952D4430AA3C8462 /* Shared */,
 				9A973839EFABA46DA6E27A4C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,11 +129,9 @@
 		F41254CBFE006CB58D755BB1 /* Flirt */ = {
 			isa = PBXGroup;
 			children = (
+				BBC3C2049A024FA32A27E5B6 /* Flirt.entitlements */,
 				B67B61BEB7564DEA0E02F022 /* FlirtApp.swift */,
 				8F7E51847295EF5E3DA75AD3 /* Info.plist */,
-				299471EDCE5EE3CEDE82C586 /* Config */,
-				B49BE617EE7E7D12AAD98578 /* Models */,
-				B2DD60D1E0E960836325B1C6 /* Networking */,
 				0B21780587CBE0B92CDCFCD5 /* ViewModels */,
 				BAED61A4C62D7A411794EFCC /* Views */,
 			);
@@ -106,15 +141,34 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3C8719B3ADBFB29A615E6A4B /* FlirtKeyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E61C87F0BF92FB22D631C67 /* Build configuration list for PBXNativeTarget "FlirtKeyboard" */;
+			buildPhases = (
+				35EF3393CB8F81BD93266089 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FlirtKeyboard;
+			packageProductDependencies = (
+			);
+			productName = FlirtKeyboard;
+			productReference = 0999E7046551DAF6D5443767 /* FlirtKeyboard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		3F2C50DB78A49D91892F5C1E /* Flirt */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 31C8B0F55D3B39A471B3658A /* Build configuration list for PBXNativeTarget "Flirt" */;
 			buildPhases = (
 				B7E33B7590A5B05E6C94AABA /* Sources */,
+				82D8C68BB394FB720CFC6AD1 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5513B06B2C2FE3EC70ED7A00 /* PBXTargetDependency */,
 			);
 			name = Flirt;
 			packageProductDependencies = (
@@ -149,20 +203,34 @@
 			projectRoot = "";
 			targets = (
 				3F2C50DB78A49D91892F5C1E /* Flirt */,
+				3C8719B3ADBFB29A615E6A4B /* FlirtKeyboard */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		35EF3393CB8F81BD93266089 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5CFA6A2EEA84D87575050AAF /* APIClient.swift in Sources */,
+				C1DA8741850896282F12B37F /* AppConfig.swift in Sources */,
+				7A81FF0FE5B91E01CA48D38B /* AppGroupStore.swift in Sources */,
+				5728CB6479118CE817AAACA4 /* KeyboardView.swift in Sources */,
+				96959994707FE929AF2F7C54 /* KeyboardViewController.swift in Sources */,
+				7DB7AF505B9F036EDED3CCA1 /* Models.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B7E33B7590A5B05E6C94AABA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64BD5D7209053B25189AF4B9 /* APIClient.swift in Sources */,
-				7EB7D61E2DA71EE92895F2E4 /* AppConfig.swift in Sources */,
+				D23956EAD03DE574CB9029FB /* APIClient.swift in Sources */,
+				43D9E303AA8A023834A6216E /* AppConfig.swift in Sources */,
+				A7E2E4949578DF872591B075 /* AppGroupStore.swift in Sources */,
 				1FB152AAD6E9FF5B77CBF1F5 /* FlirtApp.swift in Sources */,
-				1E94DA7204CE7A9EC4F4D48A /* KeychainHelper.swift in Sources */,
-				8BCD4735D18104FAC9C16E91 /* Models.swift in Sources */,
+				9656BEABC1C3E3C4C754D70A /* Models.swift in Sources */,
 				B9904DB3D9516CB3D2789D19 /* ReplyGeneratorView.swift in Sources */,
 				059CE12970AFB61F0DCA9C3F /* ReplyGeneratorViewModel.swift in Sources */,
 				7C83A43C3D1180D340A5BEAB /* SuggestionCard.swift in Sources */,
@@ -170,6 +238,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5513B06B2C2FE3EC70ED7A00 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3C8719B3ADBFB29A615E6A4B /* FlirtKeyboard */;
+			targetProxy = 7B63094B2D05BCE697180E33 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0B3FBCC632C5CCB0E952DCD9 /* Release */ = {
@@ -225,6 +301,27 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		0B60A3F184BB267625BD8E41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = FlirtKeyboard/FlirtKeyboard.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = FlirtKeyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.singularitybox.flirt.keyboard;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -291,10 +388,32 @@
 			};
 			name = Debug;
 		};
+		3766673BBEE238CBD0716E3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = FlirtKeyboard/FlirtKeyboard.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = FlirtKeyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.singularitybox.flirt.keyboard;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
 		3AB31CAC3475249F4C4F6D90 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Flirt/Flirt.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -305,7 +424,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.singularitybox.flirt;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.9;
@@ -317,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Flirt/Flirt.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -327,7 +447,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.singularitybox.flirt;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.9;
@@ -352,6 +472,15 @@
 			buildConfigurations = (
 				17E0BAFE0D0E5DC98D11CBE4 /* Debug */,
 				0B3FBCC632C5CCB0E952DCD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9E61C87F0BF92FB22D631C67 /* Build configuration list for PBXNativeTarget "FlirtKeyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3766673BBEE238CBD0716E3B /* Debug */,
+				0B60A3F184BB267625BD8E41 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
