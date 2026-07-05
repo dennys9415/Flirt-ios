@@ -1,7 +1,13 @@
 import Foundation
 
 enum AppConfig {
-    /// Local dev: the flirt-api stack from flirt-infra (scripts/up.sh).
-    /// The iOS simulator reaches the host machine via localhost.
-    static let apiBaseURL = URL(string: "http://localhost:3000")!
+    /// Simulator talks to the local stack (Flirt-infra/scripts/up.sh);
+    /// a real device talks to production.
+    static let apiBaseURL: URL = {
+        #if targetEnvironment(simulator)
+        URL(string: "http://localhost:3000")!
+        #else
+        URL(string: "https://api.thesingularitybox.com")!
+        #endif
+    }()
 }
