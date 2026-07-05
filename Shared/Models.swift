@@ -149,3 +149,18 @@ struct HistoryEntry: Codable, Identifiable, Equatable {
 struct HistoryResponse: Codable {
     let entries: [HistoryEntry]
 }
+
+// MARK: - v0.4: subscriptions
+
+struct VerifySubscriptionRequest: Codable {
+    let transactionId: String
+    let productId: String
+    let environment: String
+    let expiresAt: String?
+}
+
+struct VerifySubscriptionResponse: Codable {
+    let plan: String
+    let status: String
+    let expiresAt: String?
+}

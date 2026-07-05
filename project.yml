@@ -3,6 +3,16 @@ options:
   bundleIdPrefix: com.singularitybox
   deploymentTarget:
     iOS: "17.0"
+schemes:
+  Flirt:
+    build:
+      targets:
+        Flirt: all
+    run:
+      config: Debug
+      # Local StoreKit testing — subscriptions work in the simulator
+      # without App Store Connect (see flirt-docs/ROADMAP.md v0.4)
+      storeKitConfiguration: Flirt/Flirt.storekit
 targets:
   Flirt:
     type: application

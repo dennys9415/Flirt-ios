@@ -13,6 +13,7 @@
 		43D9E303AA8A023834A6216E /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA7DFC18D08BA20D6A6746 /* AppConfig.swift */; };
 		5728CB6479118CE817AAACA4 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F30D71AEF1B20CB4B9096 /* KeyboardView.swift */; };
 		5CFA6A2EEA84D87575050AAF /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F34D2EEC1BC22533D52F91 /* APIClient.swift */; };
+		75CD1757B78FF6587E8EA816 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0AA8F3A73AF9F8AF7DA657 /* PaywallView.swift */; };
 		7A81FF0FE5B91E01CA48D38B /* AppGroupStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D010312DD5BAD7796712713 /* AppGroupStore.swift */; };
 		7C83A43C3D1180D340A5BEAB /* SuggestionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC6AC88AAF11AFABD387759 /* SuggestionCard.swift */; };
 		7DB7AF505B9F036EDED3CCA1 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A442E7B3E1379A6B37D20A77 /* Models.swift */; };
@@ -22,7 +23,9 @@
 		A7E2E4949578DF872591B075 /* AppGroupStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D010312DD5BAD7796712713 /* AppGroupStore.swift */; };
 		AD3148229584544B52EA73FE /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D5B8666CB1251604B4B2CF /* HistoryView.swift */; };
 		B9904DB3D9516CB3D2789D19 /* ReplyGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63B3A5C4B398BD44B5B7A90 /* ReplyGeneratorView.swift */; };
+		BCBB54A63BE8941EC1218D87 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E76975FE40EE7F07D794819 /* StoreManager.swift */; };
 		C1DA8741850896282F12B37F /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA7DFC18D08BA20D6A6746 /* AppConfig.swift */; };
+		D0466A10CE8D2A7D97DEF32B /* Flirt.storekit in Resources */ = {isa = PBXBuildFile; fileRef = D6A22ECE04550A48EE2ED491 /* Flirt.storekit */; };
 		D23956EAD03DE574CB9029FB /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F34D2EEC1BC22533D52F91 /* APIClient.swift */; };
 		EA75CB31CD4B8D29EAFE4A10 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0966C871DB4879BE0FBEF /* SettingsView.swift */; };
 		F86B51FD22F5AA42E34697D5 /* FlirtKeyboard.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0999E7046551DAF6D5443767 /* FlirtKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -58,11 +61,13 @@
 		22DA7DFC18D08BA20D6A6746 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		3429C47712C5D6850B252CFC /* FlirtKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlirtKeyboard.entitlements; sourceTree = "<group>"; };
 		385328BE1BD33F32F247002C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		3E76975FE40EE7F07D794819 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		4A7F30D71AEF1B20CB4B9096 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		74F34D2EEC1BC22533D52F91 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		79D5B8666CB1251604B4B2CF /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		8E7EA49525116E605A5F5792 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		8F7E51847295EF5E3DA75AD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9A0AA8F3A73AF9F8AF7DA657 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		A442E7B3E1379A6B37D20A77 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		B67B61BEB7564DEA0E02F022 /* FlirtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlirtApp.swift; sourceTree = "<group>"; };
 		BBC3C2049A024FA32A27E5B6 /* Flirt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Flirt.entitlements; sourceTree = "<group>"; };
@@ -70,6 +75,7 @@
 		C63B3A5C4B398BD44B5B7A90 /* ReplyGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyGeneratorView.swift; sourceTree = "<group>"; };
 		D0F24A347794CA8B8DEF55B0 /* Flirt.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Flirt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5726CE437EFA3FB7A9A0F84 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		D6A22ECE04550A48EE2ED491 /* Flirt.storekit */ = {isa = PBXFileReference; path = Flirt.storekit; sourceTree = "<group>"; };
 		E3BDEB12B357DA719F3D9CED /* ReplyGeneratorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyGeneratorViewModel.swift; sourceTree = "<group>"; };
 		EAC6AC88AAF11AFABD387759 /* SuggestionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCard.swift; sourceTree = "<group>"; };
 		EDB0966C871DB4879BE0FBEF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -121,6 +127,7 @@
 				79D5B8666CB1251604B4B2CF /* HistoryView.swift */,
 				D5726CE437EFA3FB7A9A0F84 /* MainTabView.swift */,
 				385328BE1BD33F32F247002C /* OnboardingView.swift */,
+				9A0AA8F3A73AF9F8AF7DA657 /* PaywallView.swift */,
 				C63B3A5C4B398BD44B5B7A90 /* ReplyGeneratorView.swift */,
 				EDB0966C871DB4879BE0FBEF /* SettingsView.swift */,
 				EAC6AC88AAF11AFABD387759 /* SuggestionCard.swift */,
@@ -142,12 +149,22 @@
 			isa = PBXGroup;
 			children = (
 				BBC3C2049A024FA32A27E5B6 /* Flirt.entitlements */,
+				D6A22ECE04550A48EE2ED491 /* Flirt.storekit */,
 				B67B61BEB7564DEA0E02F022 /* FlirtApp.swift */,
 				8F7E51847295EF5E3DA75AD3 /* Info.plist */,
+				F612BD4AAFA0056632C548FC /* Store */,
 				0B21780587CBE0B92CDCFCD5 /* ViewModels */,
 				BAED61A4C62D7A411794EFCC /* Views */,
 			);
 			path = Flirt;
+			sourceTree = "<group>";
+		};
+		F612BD4AAFA0056632C548FC /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				3E76975FE40EE7F07D794819 /* StoreManager.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +192,7 @@
 			buildConfigurationList = 31C8B0F55D3B39A471B3658A /* Build configuration list for PBXNativeTarget "Flirt" */;
 			buildPhases = (
 				B7E33B7590A5B05E6C94AABA /* Sources */,
+				215B339C4ADD4E425959AE8E /* Resources */,
 				82D8C68BB394FB720CFC6AD1 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
@@ -220,6 +238,17 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		215B339C4ADD4E425959AE8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0466A10CE8D2A7D97DEF32B /* Flirt.storekit in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		35EF3393CB8F81BD93266089 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -246,9 +275,11 @@
 				800C70801DC4282B560BCEA5 /* MainTabView.swift in Sources */,
 				9656BEABC1C3E3C4C754D70A /* Models.swift in Sources */,
 				1BC56570B05F9166C1C247B3 /* OnboardingView.swift in Sources */,
+				75CD1757B78FF6587E8EA816 /* PaywallView.swift in Sources */,
 				B9904DB3D9516CB3D2789D19 /* ReplyGeneratorView.swift in Sources */,
 				059CE12970AFB61F0DCA9C3F /* ReplyGeneratorViewModel.swift in Sources */,
 				EA75CB31CD4B8D29EAFE4A10 /* SettingsView.swift in Sources */,
+				BCBB54A63BE8941EC1218D87 /* StoreManager.swift in Sources */,
 				7C83A43C3D1180D340A5BEAB /* SuggestionCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

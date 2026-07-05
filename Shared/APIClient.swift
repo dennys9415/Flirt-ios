@@ -116,6 +116,24 @@ actor APIClient {
         try await authorizedGet(path: "/history")
     }
 
+    func verifySubscription(
+        transactionId: String,
+        productId: String,
+        expiresAt: Date?
+    ) async throws -> VerifySubscriptionResponse {
+        try await authorizedPost(
+            path: "/subscriptions/verify",
+            body: VerifySubscriptionRequest(
+                transactionId: transactionId,
+                productId: productId,
+                environment: "storekit_test",
+                expiresAt: expiresAt.map {
+                    ISO8601DateFormatter().string(from: $0)
+                }
+            )
+        )
+    }
+
     // MARK: - Auth
 
     private func ensureToken() async throws -> String {

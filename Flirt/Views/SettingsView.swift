@@ -11,6 +11,7 @@ struct SettingsView: View {
     @State private var password = ""
     @State private var isRegistering = false
     @State private var isSubmitting = false
+    @State private var showPaywall = false
 
     var body: some View {
         NavigationStack {
@@ -25,6 +26,11 @@ struct SettingsView: View {
             .navigationTitle("Settings")
             .task { await load() }
             .refreshable { await load() }
+            .sheet(isPresented: $showPaywall) {
+                PaywallView {
+                    Task { await load() }
+                }
+            }
         }
     }
 
@@ -36,6 +42,13 @@ struct SettingsView: View {
             Section("Account") {
                 LabeledContent("Email", value: profile.email)
                 LabeledContent("Plan", value: profile.plan.capitalized)
+                if profile.plan == "free" {
+                    Button {
+                        showPaywall = true
+                    } label: {
+                        Label("Upgrade to Pro", systemImage: "sparkles")
+                    }
+                }
                 Button("Log out", role: .destructive) {
                     Task {
                         await APIClient.shared.logout()
