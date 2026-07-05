@@ -60,6 +60,62 @@ actor APIClient {
         )
     }
 
+    // MARK: - v0.3: accounts, usage, history
+
+    func register(email: String, password: String) async throws -> AccountTokenResponse {
+        try await emailAuth(path: "/auth/register", email: email, password: password)
+    }
+
+    func login(email: String, password: String) async throws -> AccountTokenResponse {
+        try await emailAuth(path: "/auth/login", email: email, password: password)
+    }
+
+    private func emailAuth(
+        path: String,
+        email: String,
+        password: String
+    ) async throws -> AccountTokenResponse {
+        let identifier = await deviceIdentifier()
+        let response: AccountTokenResponse = try await post(
+            path: path,
+            body: EmailAuthRequest(
+                email: email,
+                password: password,
+                deviceIdentifier: identifier
+            ),
+            token: nil
+        )
+        // Account tokens replace the anonymous device tokens
+        accessToken = response.accessToken
+        AppGroupStore.accessToken = response.accessToken
+        AppGroupStore.refreshToken = response.refreshToken
+        return response
+    }
+
+    func logout() async {
+        accessToken = nil
+        AppGroupStore.accessToken = nil
+        AppGroupStore.refreshToken = nil
+        // Next call re-authenticates as an anonymous device
+    }
+
+    func me() async throws -> MeResponse {
+        try await authorizedGet(path: "/users/me")
+    }
+
+    func updateProfile(_ update: UpdateProfileRequest) async throws -> UserProfile {
+        let token = try await ensureToken()
+        return try await send(path: "/users/profile", method: "PATCH", body: update, token: token)
+    }
+
+    func usage() async throws -> UsageSummary {
+        try await authorizedGet(path: "/usage")
+    }
+
+    func history() async throws -> HistoryResponse {
+        try await authorizedGet(path: "/history")
+    }
+
     // MARK: - Auth
 
     private func ensureToken() async throws -> String {
@@ -110,14 +166,37 @@ actor APIClient {
         }
     }
 
+    private func authorizedGet<R: Decodable>(path: String) async throws -> R {
+        let token = try await ensureToken()
+        do {
+            return try await send(path: path, method: "GET", body: nil as String?, token: token)
+        } catch APIError.http(401, _) {
+            accessToken = nil
+            AppGroupStore.accessToken = nil
+            let fresh = try await authenticateDevice()
+            return try await send(path: path, method: "GET", body: nil as String?, token: fresh)
+        }
+    }
+
     private func post<B: Encodable, R: Decodable>(path: String, body: B, token: String?) async throws -> R {
+        try await send(path: path, method: "POST", body: body, token: token)
+    }
+
+    private func send<B: Encodable, R: Decodable>(
+        path: String,
+        method: String,
+        body: B?,
+        token: String?
+    ) async throws -> R {
         var request = URLRequest(url: baseURL.appendingPathComponent(path))
-        request.httpMethod = "POST"
+        request.httpMethod = method
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         if let token {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
-        request.httpBody = try JSONEncoder().encode(body)
+        if let body, method != "GET" {
+            request.httpBody = try JSONEncoder().encode(body)
+        }
 
         let data: Data
         let response: URLResponse

@@ -91,3 +91,61 @@ struct ApiErrorBody: Codable {
     let error: Detail?
     let message: String?
 }
+
+// MARK: - v0.3: accounts, usage, history
+
+struct EmailAuthRequest: Codable {
+    let email: String
+    let password: String
+    let deviceIdentifier: String
+}
+
+struct AuthUser: Codable, Equatable {
+    let id: String
+    let email: String
+    let plan: String
+}
+
+struct AccountTokenResponse: Codable {
+    let accessToken: String
+    let refreshToken: String
+    let deviceId: String
+    let user: AuthUser?
+}
+
+struct UserProfile: Codable, Equatable {
+    let id: String
+    let email: String
+    let displayName: String?
+    let plan: String
+    let historyOptIn: Bool
+}
+
+struct MeResponse: Codable {
+    let user: UserProfile?
+}
+
+struct UpdateProfileRequest: Codable {
+    var displayName: String?
+    var historyOptIn: Bool?
+}
+
+struct UsageSummary: Codable, Equatable {
+    let plan: String
+    let used: Int
+    let limit: Int?
+    let enforced: Bool
+    let resetsAt: String
+}
+
+struct HistoryEntry: Codable, Identifiable, Equatable {
+    let id: String
+    let message: String
+    let tone: String
+    let suggestions: [Suggestion]
+    let createdAt: String
+}
+
+struct HistoryResponse: Codable {
+    let entries: [HistoryEntry]
+}
