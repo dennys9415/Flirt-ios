@@ -12,31 +12,51 @@ struct OnboardingView: View {
                 welcome.tag(0)
                 keyboardSetup.tag(1)
                 howToUse.tag(2)
+                account.tag(3)
             }
             .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .always))
 
-            Button {
-                if page < 2 {
+            if page < 3 {
+                Button {
                     withAnimation { page += 1 }
-                } else {
-                    onDone()
+                } label: {
+                    Text("Next")
+                        .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 14)
                 }
-            } label: {
-                Text(page < 2 ? "Next" : "Let's go")
-                    .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 14)
+                .buttonStyle(.borderedProminent)
+                .padding(.horizontal)
             }
-            .buttonStyle(.borderedProminent)
-            .padding(.horizontal)
 
-            Button("Skip") { onDone() }
+            Button(page < 3 ? "Skip" : "Skip — I'll do it later in Settings") { onDone() }
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .padding(.top, 4)
         }
         .padding(.bottom, 24)
+    }
+
+    private var account: some View {
+        ScrollView {
+            VStack(spacing: 16) {
+                Image(systemName: "person.crop.circle.badge.plus")
+                    .font(.system(size: 44))
+                    .foregroundStyle(.tint)
+                Text("Your account (optional)")
+                    .font(.title2.bold())
+                Text("Sync your history and settings across devices. You can always skip and use Flirt anonymously.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                AuthFormView {
+                    onDone()
+                }
+            }
+            .padding(24)
+        }
+        .scrollDismissesKeyboard(.interactively)
     }
 
     private var welcome: some View {

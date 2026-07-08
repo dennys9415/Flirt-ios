@@ -6,18 +6,21 @@ struct SettingsView: View {
     @State private var isLoading = false
     @State private var errorMessage: String?
 
-    // Auth form
-    @State private var email = ""
-    @State private var password = ""
-    @State private var isRegistering = false
-    @State private var isSubmitting = false
     @State private var showPaywall = false
+
+    // BYOK
+    @State private var aiSettings: AiSettingsView_DTO?
+    @State private var newProvider: AiProviderChoice = .gemini
+    @State private var newApiKey = ""
+    @State private var newModel = ""
+    @State private var isSavingKey = false
 
     var body: some View {
         NavigationStack {
             Form {
                 accountSection
                 if profile != nil {
+                    aiProviderSection
                     historySection
                 }
                 usageSection
@@ -41,6 +44,9 @@ struct SettingsView: View {
         if let profile {
             Section("Account") {
                 LabeledContent("Email", value: profile.email)
+                if let username = profile.username {
+                    LabeledContent("Username", value: "@\(username)")
+                }
                 LabeledContent("Plan", value: profile.plan.capitalized)
                 if profile.plan == "free" {
                     Button {
@@ -60,42 +66,78 @@ struct SettingsView: View {
             }
         } else {
             Section {
-                TextField("Email", text: $email)
-                    .keyboardType(.emailAddress)
-                    .textContentType(.emailAddress)
-                    .autocapitalization(.none)
-                    .autocorrectionDisabled()
-                SecureField("Password (8+ characters)", text: $password)
-                    .textContentType(isRegistering ? .newPassword : .password)
-
-                Button {
-                    submitAuth()
-                } label: {
-                    if isSubmitting {
-                        ProgressView()
-                    } else {
-                        Text(isRegistering ? "Create account" : "Log in")
-                            .frame(maxWidth: .infinity)
-                    }
+                AuthFormView {
+                    Task { await load() }
                 }
-                .disabled(email.isEmpty || password.count < 8 || isSubmitting)
-
-                Button(
-                    isRegistering
-                        ? "Already have an account? Log in"
-                        : "New here? Create an account"
-                ) {
-                    isRegistering.toggle()
-                }
-                .font(.footnote)
             } header: {
                 Text("Account")
             } footer: {
-                if let errorMessage {
-                    Text(errorMessage).foregroundStyle(.red)
-                } else {
-                    Text("Optional — your history syncs across devices with an account.")
+                Text("Optional — your history syncs across devices with an account.")
+            }
+        }
+    }
+
+    // MARK: - BYOK
+
+    private var aiProviderSection: some View {
+        Section {
+            if let current = aiSettings {
+                LabeledContent("Provider", value: AiProviderChoice(rawValue: current.provider)?.label ?? current.provider)
+                LabeledContent("API key", value: current.apiKeyMasked)
+                if let model = current.model {
+                    LabeledContent("Model", value: model)
                 }
+                Button("Remove my key", role: .destructive) {
+                    Task {
+                        try? await APIClient.shared.deleteAiSettings()
+                        aiSettings = nil
+                    }
+                }
+            } else {
+                Picker("Provider", selection: $newProvider) {
+                    ForEach(AiProviderChoice.allCases) { choice in
+                        Text(choice.label).tag(choice)
+                    }
+                }
+                SecureField("API key", text: $newApiKey)
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled()
+                TextField("Model (optional)", text: $newModel)
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled()
+                Button("Save key") {
+                    saveAiKey()
+                }
+                .disabled(newApiKey.count < 8 || isSavingKey)
+            }
+        } header: {
+            Text("AI Provider (your own key)")
+        } footer: {
+            if let errorMessage {
+                Text(errorMessage).foregroundStyle(.red)
+            } else if aiSettings != nil {
+                Text("Your replies are generated with your key, on your provider's bill.")
+            } else {
+                Text("Optional — use your own OpenAI / Claude / Gemini key. Stored encrypted; only a masked version is ever shown.")
+            }
+        }
+    }
+
+    private func saveAiKey() {
+        isSavingKey = true
+        errorMessage = nil
+        Task {
+            defer { isSavingKey = false }
+            do {
+                aiSettings = try await APIClient.shared.setAiSettings(
+                    provider: newProvider,
+                    apiKey: newApiKey,
+                    model: newModel
+                )
+                newApiKey = ""
+                newModel = ""
+            } catch {
+                errorMessage = error.localizedDescription
             }
         }
     }
@@ -150,28 +192,14 @@ struct SettingsView: View {
         do {
             profile = try await APIClient.shared.me().user
             usage = try await APIClient.shared.usage()
+            if profile != nil {
+                aiSettings = try await APIClient.shared.aiSettings().settings
+            } else {
+                aiSettings = nil
+            }
             errorMessage = nil
         } catch {
             errorMessage = error.localizedDescription
-        }
-    }
-
-    private func submitAuth() {
-        isSubmitting = true
-        errorMessage = nil
-        Task {
-            defer { isSubmitting = false }
-            do {
-                if isRegistering {
-                    _ = try await APIClient.shared.register(email: email, password: password)
-                } else {
-                    _ = try await APIClient.shared.login(email: email, password: password)
-                }
-                password = ""
-                await load()
-            } catch {
-                errorMessage = error.localizedDescription
-            }
         }
     }
 

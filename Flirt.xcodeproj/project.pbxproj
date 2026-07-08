@@ -10,6 +10,7 @@
 		059CE12970AFB61F0DCA9C3F /* ReplyGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BDEB12B357DA719F3D9CED /* ReplyGeneratorViewModel.swift */; };
 		1BC56570B05F9166C1C247B3 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385328BE1BD33F32F247002C /* OnboardingView.swift */; };
 		1FB152AAD6E9FF5B77CBF1F5 /* FlirtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67B61BEB7564DEA0E02F022 /* FlirtApp.swift */; };
+		2AE0ED897BB7B752DD03E30C /* AuthFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BD0E37EA7FBFC5C06E48D0 /* AuthFormView.swift */; };
 		43D9E303AA8A023834A6216E /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA7DFC18D08BA20D6A6746 /* AppConfig.swift */; };
 		5728CB6479118CE817AAACA4 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F30D71AEF1B20CB4B9096 /* KeyboardView.swift */; };
 		5CFA6A2EEA84D87575050AAF /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F34D2EEC1BC22533D52F91 /* APIClient.swift */; };
@@ -60,6 +61,7 @@
 		1D010312DD5BAD7796712713 /* AppGroupStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroupStore.swift; sourceTree = "<group>"; };
 		22DA7DFC18D08BA20D6A6746 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		3429C47712C5D6850B252CFC /* FlirtKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlirtKeyboard.entitlements; sourceTree = "<group>"; };
+		37BD0E37EA7FBFC5C06E48D0 /* AuthFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFormView.swift; sourceTree = "<group>"; };
 		385328BE1BD33F32F247002C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		3E76975FE40EE7F07D794819 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		4A7F30D71AEF1B20CB4B9096 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 		BAED61A4C62D7A411794EFCC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				37BD0E37EA7FBFC5C06E48D0 /* AuthFormView.swift */,
 				79D5B8666CB1251604B4B2CF /* HistoryView.swift */,
 				D5726CE437EFA3FB7A9A0F84 /* MainTabView.swift */,
 				385328BE1BD33F32F247002C /* OnboardingView.swift */,
@@ -270,6 +273,7 @@
 				D23956EAD03DE574CB9029FB /* APIClient.swift in Sources */,
 				43D9E303AA8A023834A6216E /* AppConfig.swift in Sources */,
 				A7E2E4949578DF872591B075 /* AppGroupStore.swift in Sources */,
+				2AE0ED897BB7B752DD03E30C /* AuthFormView.swift in Sources */,
 				1FB152AAD6E9FF5B77CBF1F5 /* FlirtApp.swift in Sources */,
 				AD3148229584544B52EA73FE /* HistoryView.swift in Sources */,
 				800C70801DC4282B560BCEA5 /* MainTabView.swift in Sources */,

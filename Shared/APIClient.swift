@@ -62,27 +62,43 @@ actor APIClient {
 
     // MARK: - v0.3: accounts, usage, history
 
-    func register(email: String, password: String) async throws -> AccountTokenResponse {
-        try await emailAuth(path: "/auth/register", email: email, password: password)
+    func register(
+        email: String,
+        password: String,
+        username: String? = nil
+    ) async throws -> AccountTokenResponse {
+        try await emailAuth(
+            path: "/auth/register",
+            body: EmailAuthRequest(
+                email: email,
+                username: username?.isEmpty == false ? username : nil,
+                password: password,
+                deviceIdentifier: await deviceIdentifier()
+            )
+        )
     }
 
-    func login(email: String, password: String) async throws -> AccountTokenResponse {
-        try await emailAuth(path: "/auth/login", email: email, password: password)
+    /** identifier = email or username — detected by the presence of "@". */
+    func login(identifier: String, password: String) async throws -> AccountTokenResponse {
+        let isEmail = identifier.contains("@")
+        return try await emailAuth(
+            path: "/auth/login",
+            body: EmailAuthRequest(
+                email: isEmail ? identifier : nil,
+                username: isEmail ? nil : identifier.lowercased(),
+                password: password,
+                deviceIdentifier: await deviceIdentifier()
+            )
+        )
     }
 
     private func emailAuth(
         path: String,
-        email: String,
-        password: String
+        body: EmailAuthRequest
     ) async throws -> AccountTokenResponse {
-        let identifier = await deviceIdentifier()
         let response: AccountTokenResponse = try await post(
             path: path,
-            body: EmailAuthRequest(
-                email: email,
-                password: password,
-                deviceIdentifier: identifier
-            ),
+            body: body,
             token: nil
         )
         // Account tokens replace the anonymous device tokens
@@ -90,6 +106,35 @@ actor APIClient {
         AppGroupStore.accessToken = response.accessToken
         AppGroupStore.refreshToken = response.refreshToken
         return response
+    }
+
+    // MARK: - v0.5: BYOK AI settings
+
+    func aiSettings() async throws -> AiSettingsResponse {
+        try await authorizedGet(path: "/users/ai-settings")
+    }
+
+    func setAiSettings(
+        provider: AiProviderChoice,
+        apiKey: String,
+        model: String?
+    ) async throws -> AiSettingsView_DTO {
+        let token = try await ensureToken()
+        return try await send(
+            path: "/users/ai-settings",
+            method: "PUT",
+            body: UpsertAiSettingsRequest(
+                provider: provider.rawValue,
+                apiKey: apiKey,
+                model: model?.isEmpty == false ? model : nil
+            ),
+            token: token
+        )
+    }
+
+    func deleteAiSettings() async throws {
+        let token = try await ensureToken()
+        try await sendNoContent(path: "/users/ai-settings", method: "DELETE", token: token)
     }
 
     func logout() async {
@@ -198,6 +243,24 @@ actor APIClient {
 
     private func post<B: Encodable, R: Decodable>(path: String, body: B, token: String?) async throws -> R {
         try await send(path: path, method: "POST", body: body, token: token)
+    }
+
+    /** For 204-style endpoints (DELETE). */
+    private func sendNoContent(path: String, method: String, token: String) async throws {
+        var request = URLRequest(url: baseURL.appendingPathComponent(path))
+        request.httpMethod = method
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        let (data, response): (Data, URLResponse)
+        do {
+            (data, response) = try await URLSession.shared.data(for: request)
+        } catch {
+            throw APIError.network(error)
+        }
+        guard let http = response as? HTTPURLResponse else { throw APIError.decoding }
+        guard (200..<300).contains(http.statusCode) else {
+            let parsed = try? JSONDecoder().decode(ApiErrorBody.self, from: data)
+            throw APIError.http(http.statusCode, parsed?.error?.message ?? "Request failed")
+        }
     }
 
     private func send<B: Encodable, R: Decodable>(
